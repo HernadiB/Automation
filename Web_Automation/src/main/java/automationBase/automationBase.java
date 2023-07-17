@@ -32,7 +32,7 @@ public class automationBase {
     public static void setDriver(){
         Properties runtimeProps = automationThreadLocalFactory.getRuntimeProps();
         DriverDto driverDto = new DriverDto();
-        driverDto.setBrowserType(runtimeProps.getProperty("browsertype").toLowerCase())
+        driverDto.setBrowserType(runtimeProps.getProperty("browserType").toLowerCase())
                 .setBrowserVersion(runtimeProps.getProperty("browserVersion").toLowerCase())
                 .setImplicitWait(30)
                 .setIsRemote(Boolean.parseBoolean(runtimeProps.getProperty("isRemote")))
@@ -41,7 +41,7 @@ public class automationBase {
         ConnectionInfo connectionInfo;
         connectionInfo = ConnectionFactory.createConnection(driverDto);
 
-        connectionInfo.setBaseUrls(UrlHelper.getAllBaseUrlsByEnvironmentType(runtimeProps.getProperty("testEnvironmentType")));
+        //connectionInfo.setBaseUrls(UrlHelper.getAllBaseUrlsByEnvironmentType(runtimeProps.getProperty("testEnvironmentType")));
 
         automationThreadLocalFactory.setConnectionInfo(connectionInfo);
         initUI();
@@ -51,8 +51,8 @@ public class automationBase {
      * Create the ApplicationUI class and set to thread local variable
      */
     public static void initUI(){
-        automationUI fUi = new automationUI();
-        automationThreadLocalFactory.setUi(fUi);
+        automationUI fEUi = new automationUI();
+        automationThreadLocalFactory.setUi(fEUi);
     }
 
     /**
