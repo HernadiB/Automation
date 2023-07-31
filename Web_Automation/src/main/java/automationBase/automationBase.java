@@ -41,6 +41,7 @@ public class automationBase {
         ConnectionInfo connectionInfo;
         connectionInfo = ConnectionFactory.createConnection(driverDto);
 
+        //TODO: testEnvironmentType-ra hibát dob
         //connectionInfo.setBaseUrls(UrlHelper.getAllBaseUrlsByEnvironmentType(runtimeProps.getProperty("testEnvironmentType")));
 
         automationThreadLocalFactory.setConnectionInfo(connectionInfo);
