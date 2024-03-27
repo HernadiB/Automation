@@ -1,0 +1,41 @@
+# This workflow will build a package using Maven and then publish it to GitHub packages when a release is created
+# For more information see: https://github.com/actions/setup-java/blob/main/docs/advanced-usage.md#apache-maven-with-a-settings-path
+
+name: Maven Package
+
+on:
+  workflow_dispatch:
+
+jobs:
+  CodeQL:
+
+    runs-on: ubuntu-latest
+    permissions:
+      security-events: write
+      actions: read
+      contents: read
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+      
+    - name: Set up JDK 11
+      uses: actions/setup-java@v3
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+        server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
+        settings-path: ${{ github.workspace }} # location for the settings.xml file
+
+    - name: Initalize CodeQL
+      uses: github/codeql-action-init@v2
+      with:
+        languages: java
+
+    - name: Build with Maven
+      run: |
+          chmod +x ./mvnw
+          ./mvnw -B package -DskipTests --file pom.xml
+
+    - name: Perform CodeQl Analysis
+      uses: github/codeql-action/analyze@v2
