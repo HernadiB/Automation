@@ -40,9 +40,7 @@ jobs:
         languages: java
 
     - name: Build with Maven
-      run: |
-          chmod +x ./mvnw
-          ./mvnw -B package -DskipTests --file pom.xml
+      run: mvn -B package -DskipTests --file pom.xml
 
     - name: Perform CodeQl Analysis
       uses: github/codeql-action/analyze@v2
