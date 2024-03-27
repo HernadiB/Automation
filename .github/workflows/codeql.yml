@@ -39,8 +39,8 @@ jobs:
       with:
         languages: java
 
-    - name: Build with Maven
-      run: mvn -B package -DskipTests --file pom.xml
+    - name: Autobuild
+      run: github/codeql-action/autobuild@v1
 
     - name: Perform CodeQl Analysis
       uses: github/codeql-action/analyze@v2
