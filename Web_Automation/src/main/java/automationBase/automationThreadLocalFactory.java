@@ -3,13 +3,13 @@ package automationBase;
 import webTDK.common.ThreadLocalBaseFactory;
 
 /** Helper to store data in thread **/
-public class automationThreadLocalFactory extends ThreadLocalBaseFactory {
-    private static final ThreadLocal<automationUI> ui = new ThreadLocal<>();
-    public static automationUI getUi(){
+public class AutomationThreadLocalFactory extends ThreadLocalBaseFactory {
+    private static final ThreadLocal<AutomationUI> ui = new ThreadLocal<>();
+    public static AutomationUI getUi(){
         return ui.get();
     }
-    public static void setUi(automationUI ui){
-        automationThreadLocalFactory.ui.set(ui);
+    public static void setUi(AutomationUI ui){
+        AutomationThreadLocalFactory.ui.set(ui);
     }
     public static void removeThreadLocalVariables(){
         ui.remove();

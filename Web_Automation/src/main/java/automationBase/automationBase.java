@@ -3,13 +3,12 @@ package automationBase;
 import webTDK.connection.ConnectionFactory;
 import webTDK.connection.ConnectionInfo;
 import webTDK.connection.driver.DriverDto;
-import webTDK.testEnvironment.UrlHelper;
 
 import java.io.IOException;
 import java.util.Properties;
 
 /** Base class to start driver with parameters and other movement **/
-public class automationBase {
+public class AutomationBase {
     /**
      * Read the runtime properties. Browser type, browser version and etc...
      */
@@ -17,12 +16,12 @@ public class automationBase {
         Properties runtimeProps = new Properties();
         try {
             //Load the prop file
-            runtimeProps.load(automationBase.class.getClassLoader().getResourceAsStream("runtime.properties"));
+            runtimeProps.load(AutomationBase.class.getClassLoader().getResourceAsStream("runtime.properties"));
         } catch (IOException e) {
             throw new RuntimeException("Failed to load props: " + e);
         }
         //Set properties to thread local variable
-        automationThreadLocalFactory.setRuntimeProps(runtimeProps);
+        AutomationThreadLocalFactory.setRuntimeProps(runtimeProps);
     }
 
     /**
@@ -30,7 +29,7 @@ public class automationBase {
      * Create the connection with the driver
      */
     public static void setDriver(){
-        Properties runtimeProps = automationThreadLocalFactory.getRuntimeProps();
+        Properties runtimeProps = AutomationThreadLocalFactory.getRuntimeProps();
         DriverDto driverDto = new DriverDto();
         driverDto.setBrowserType(runtimeProps.getProperty("browserType").toLowerCase())
                 .setBrowserVersion(runtimeProps.getProperty("browserVersion").toLowerCase())
@@ -44,7 +43,7 @@ public class automationBase {
         //TODO: testEnvironmentType-ra hibát dob
         //connectionInfo.setBaseUrls(UrlHelper.getAllBaseUrlsByEnvironmentType(runtimeProps.getProperty("testEnvironmentType")));
 
-        automationThreadLocalFactory.setConnectionInfo(connectionInfo);
+        AutomationThreadLocalFactory.setConnectionInfo(connectionInfo);
         initUI();
     }
 
@@ -52,14 +51,14 @@ public class automationBase {
      * Create the ApplicationUI class and set to thread local variable
      */
     public static void initUI(){
-        automationUI fEUi = new automationUI();
-        automationThreadLocalFactory.setUi(fEUi);
+        AutomationUI fEUi = new AutomationUI();
+        AutomationThreadLocalFactory.setUi(fEUi);
     }
 
     /**
      * Quit driver
      */
     public static void quitDriver(){
-        automationThreadLocalFactory.getConnectionInfo().getDriver().quit();
+        AutomationThreadLocalFactory.getConnectionInfo().getDriver().quit();
     }
 }
