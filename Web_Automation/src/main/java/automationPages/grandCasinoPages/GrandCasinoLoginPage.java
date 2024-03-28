@@ -1,27 +1,20 @@
 package automationPages.grandCasinoPages;
 
-import automationBase.automationThreadLocalFactory;
+import automationBase.AutomationThreadLocalFactory;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Wait;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import webTDK.common.helpers.PresenceHelpers;
-import webTDK.common.helpers.wait.WaitConditions;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import webTDK.common.helpers.wait.WaitHelpers;
 import webTDK.pagefactory.PageBase;
 
-import java.time.Duration;
 import java.util.List;
-import java.util.function.Function;
 
 public class GrandCasinoLoginPage extends PageBase {
     public GrandCasinoLoginPage(){
-        super(automationThreadLocalFactory.getConnectionInfo());
+        super(AutomationThreadLocalFactory.getConnectionInfo());
         initPage(this);
     }
 
@@ -40,12 +33,16 @@ public class GrandCasinoLoginPage extends PageBase {
     public WebElement gamesNavItem;
 
     /** Játékgyártó lenyíló lista **/
-    @FindBy(xpath = "//div[contains(text(), \"Játékgyártó\")]")
+    @FindBy(xpath = "//button[@type = \"button\" and @data-menu-target = \"navbarProviderNav\"]")
     public WebElement gameManufacturerDropdown;
 
-    /** Amatic listaelem **/
-    @FindBy(xpath = "//a[contains(text(), \"Amatic\")]")
-    public WebElement amaticManufacturer;
+    /** Játékgyártó listaelemek **/
+    @FindBy(xpath = "//div[@id = \"navbarProviderNav\"]/a")
+    public WebElement gameManufacturer;
+
+    /** Játékgyártó neve **/
+    @FindBy(xpath = "//div[@id = \"navbarProviderNav\"]/a[contains(@class, \"active\")]")
+    public WebElement gameManufacturerName;
 
     /** Játékok előképe **/
     @FindBy(xpath = "//div[contains(@class, \"m-game-grid-item column\")]")
@@ -55,9 +52,18 @@ public class GrandCasinoLoginPage extends PageBase {
     @FindBy(xpath = "//button/p[text() = \"Összes Játék\"]/parent::*")
     public WebElement allGamesButton;
 
+    @FindBy(xpath = "//div[@id = \"game-grid\"]")
+    public WebElement allGameList;
+
     //endregion
 
     //region element function
+
+    /** Oldal betöltés várakozás **/
+    public void waitForLoad() {
+        wait.until((ExpectedCondition<Boolean>) wd ->
+                ((JavascriptExecutor) wd).executeScript("return document.readyState").equals("complete"));
+    }
 
     /** Cookie elfogadás gomb kattintás **/
     public void clickToCookieAcceptButton(){
@@ -67,31 +73,77 @@ public class GrandCasinoLoginPage extends PageBase {
 
     /** Játékok menü elem kattintás **/
     public void clickToGamesNavItem(){
+        waitUntilWebElementIsClickable(gamesNavItem);
         gamesNavItem.click();
     }
 
     /** Játékgyártó lenyíló lista kattintás **/
     public void clickToGameManufacturerDropdown(){
+        waitUntilWebElementIsClickable(gameManufacturerDropdown);
         gameManufacturerDropdown.click();
-    }
-
-    /** Amatic listaelem kattintás **/
-    public void clickToAmaticManufacturer(){
-        amaticManufacturer.click();
     }
 
     /** Összes játék gomb kattintás **/
     public void clickToAllGamesButton(){
-        WaitHelpers.delay(5);
-        WebElement target = driver.findElement(By.xpath("//button/p[text() = \"Összes Játék\"]/parent::*"));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", target);
-        target.click();
+        waitUntilWebElementIsClickable(allGamesButton);
+        WebElement element = driver.findElement(By.xpath("//button/p[text() = \"Összes Játék\"]/parent::*"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element);
+        actions.perform();
+        allGamesButton.click();
     }
 
-    public void numberOfGames(){
+    /** Játékok száma **/
+    public int numberOfGames(){
         WaitHelpers.delay(5);
         List<WebElement> listOfGamesPreview = driver.findElements(By.xpath("//div[contains(@class, \"m-game-grid-item column\")]"));
-        System.out.println("Amatic játékok száma: " + listOfGamesPreview.size());
+        return listOfGamesPreview.size();
+
+    }
+
+    /** Utolsó játékig görgetés **/
+    public void scrollToLastElement(){
+        List<WebElement> listOfGames = driver.findElements(By.xpath("//div[contains(@class, \"m-game-grid-item column\")]"));
+        if (!listOfGames.isEmpty()) {
+            WebElement lastElement = listOfGames.get(listOfGames.size() - 1);
+            Actions actions = new Actions(driver);
+            actions.moveToElement(lastElement);
+            actions.perform();
+            clickToAllGamesButton();
+        } else {
+            System.out.println("No elements found");
+        }
+    }
+
+    /** Játékgyártó dropdownig vissza görgetés **/
+    public void scrollToGameManufacturerDropdown(){
+        waitUntilWebElementIsClickable(gameManufacturerDropdown);
+        WebElement element = driver.findElement(By.xpath("//button[@type = \"button\" and @data-menu-target = \"navbarProviderNav\"]"));
+        Actions actions = new Actions(driver);
+        actions.moveToElement(element);
+        actions.perform();
+        gameManufacturerDropdown.click();
+    }
+
+    /** Játékgyártó listaelem kattintás **/
+    public void clickToGameManufacturer(){
+        WaitHelpers.delay(5);
+        waitUntilWebElementIsClickable(gameManufacturerDropdown);
+        List<WebElement> listOfManufacturers = driver.findElements(By.xpath("//div[@id = \"navbarProviderNav\"]/a"));
+        if (!listOfManufacturers.isEmpty()) {
+            for (int i = 1; i < listOfManufacturers.size(); i++) {
+                WebElement element = listOfManufacturers.get(i);
+                gameManufacturerDropdown.click();
+                waitUntilWebElementIsClickable(element);
+                element.click();
+                scrollToLastElement();
+                scrollToGameManufacturerDropdown();
+                System.out.println(element.getText() + " number of games: " + numberOfGames());
+                element.click();
+            }
+        } else {
+            System.out.println("No elements found");
+        }
     }
 
     //endregion
