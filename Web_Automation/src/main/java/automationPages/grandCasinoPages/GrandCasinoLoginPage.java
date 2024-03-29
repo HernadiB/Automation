@@ -87,9 +87,16 @@ public class GrandCasinoLoginPage extends PageBase {
     public void clickToAllGamesButton(){
         waitUntilWebElementIsClickable(allGamesButton);
         WebElement element = driver.findElement(By.xpath("//button/p[text() = \"Összes Játék\"]/parent::*"));
+
+        // Moves the mouse to the middle of the element
         Actions actions = new Actions(driver);
         actions.moveToElement(element);
         actions.perform();
+
+        // Apparently scrolls there
+        /*JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].scrollIntoView(true);", element);*/
+
         allGamesButton.click();
     }
 
