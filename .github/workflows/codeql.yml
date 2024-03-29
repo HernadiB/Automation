@@ -5,13 +5,13 @@ name: CodeQL
 
 on:
   workflow_dispatch:
-  push:
-    branches: 
-      - master
-  pull_request:
-    branches: 
-      - master
-      - dev
+ # push:
+ #   branches: 
+ #     - master
+ # pull_request:
+ #   branches: 
+ #     - master
+ #     - dev
 
 jobs:
   CodeQL:
