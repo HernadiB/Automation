@@ -160,4 +160,6 @@ public class GrandCasinoLoginPage extends PageBase {
     public void openGrandCasinoLoginPage(){
         this.driver.get("https://grandcasino.hu/hu-hu/");
     }
+
+    //endregion
 }

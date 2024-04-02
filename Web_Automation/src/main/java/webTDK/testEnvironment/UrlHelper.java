@@ -22,8 +22,8 @@ public class UrlHelper {
 
     /**
      * Get environment base urls by environment name and environment type
-     * @param environmentNameList environment name like FRONTEND, CLWS
-     * @return environmentType environment type like FINT, INT
+     * @param environmentNameList environment name like GRANDCASINO, etc.
+     * @return environmentType environment type like FIT, INT
      */
     public static HashMap<String, String> getAllBaseUrlsByEnvironmentNameListAndType(ArrayList<String> environmentNameList, String environmentType){
         HashMap<String, String> baseUrls = new HashMap<>();
@@ -43,9 +43,9 @@ public class UrlHelper {
     public static String getGrandCasinoUrlWithTestEnvironmentType(String environmentType){
         switch (environmentType){
             case "INT":
-                return EnvironmentUrls.GRANDCASINO_INT_URL;
+                return EnvironmentUrls.GRANDCASINO_URL;
             default:
-                throw new RuntimeException("This type of Grand Casino not exist. Get contact with TA team " + environmentType);
+                throw new RuntimeException("This type of Grand Casino not exist. Get contact with Administrator " + environmentType);
         }
     }
 }
