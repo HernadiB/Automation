@@ -23,16 +23,15 @@ import java.util.HashMap;
 /**
  * Create driver functions
  */
-
 public class DriverFactory {
 
     /**
-     * Create a HashMap and parse all remote settings and then return the setting HashMap
-     * @param driverDto Driver settings
+     * Create a HashMap and parse all remote settings and then return the setting HashMap.
+     * @param driverDto DriverDto object
      * @return Remote setting HashMap
      */
-    public static HashMap<String, Object> createRemoteSettingHashMap(DriverDto driverDto){
-        HashMap<String, Object> ltOptions = new HashMap<>();
+    private static HashMap<String, Object> createRemoteSettingHashMap(DriverDto driverDto){
+        HashMap<String, Object> ltOptions = new HashMap<String, Object>();
         ltOptions.put("username", driverDto.getRemoteUsername());
         ltOptions.put("accessKey", driverDto.getRemoteAccessKey());
         ltOptions.put("visual", driverDto.getRemoteVisual());
@@ -52,7 +51,7 @@ public class DriverFactory {
      * @param driverDto Driver settings
      * @return Webdriver object
      */
-    public static WebDriver createInstance(DriverDto driverDto) {
+    public static WebDriver createInstance(DriverDto driverDto){
         // Webdriver object
         WebDriver driver = null;
         // Create Remote HashMap
@@ -63,27 +62,28 @@ public class DriverFactory {
         String browserLang = driverDto.getBrowserLang();
 
         //Check if local driver available
-        File driverRunnableExe = new File("src\\main\\recources\\chromedriver.exe");
+        File driverRunnableExe = new File("src\\main\\resources\\chromedriver.exe");
 
-        //Switch which driver we need
+        //Switch witch driver we need
         switch (driverDto.getBrowserType()){
             case "chrome":
                 ChromeOptions chromeOptions = new ChromeOptions();
 
-                if (!driverDto.getIsRemote()){
-                    System.out.println("----------------------- Run Local Driver -----------------------");
-                    // Check local chrome driver is exists and set it if it does
-                    if (driverRunnableExe.exists()){
-                        System.setProperty("webdriver.chrome.driver", "src\\main\\recources\\chromedriver.exe");
-                    }else {
+                if(!driverDto.getIsRemote()){
+                    System.out.println("------------ Run Local Driver ---------------");
+                    // Check local chrome driver is exits and set it if its does
+                    if(driverRunnableExe.exists()){
+                        System.setProperty("webdriver.chrome.driver", "src\\main\\resources\\chromedriver.exe");
+                    }else{
                         try {
                             WebDriverManager.chromedriver().clearDriverCache().browserVersion(browserVersion).setup();
                         }catch (Exception e){
-                            throw new RuntimeException("Probably role error. Contact with the Administrator. " + e);
+                            throw new RuntimeException("Probably role error. Contact with TACS team. " + e);
                         }
+
                     }
-                }else {
-                    System.out.println("----------------------- Run Remote Driver -----------------------");
+                }else{
+                    System.out.println("------------ Run Remote Driver ---------------");
                     RemoteOptions = createRemoteSettingHashMap(driverDto);
                     chromeOptions.setCapability(CapabilityType.BROWSER_VERSION, browserVersion == "latest" ? null : browserVersion);
                     chromeOptions.setCapability("LT:Options", RemoteOptions);
@@ -104,29 +104,23 @@ public class DriverFactory {
                 break;
 
             case "firefox":
-                // Set the driver version
-                WebDriverManager.firefoxdriver().browserVersion(browserVersion).setup();
-
                 // Set the Firefox options
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
                 firefoxOptions.setCapability(CapabilityType.BROWSER_NAME, "firefox");
                 firefoxOptions.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
                 break;
-            case "edge":
-                // Set the driver version
-                WebDriverManager.edgedriver().browserVersion(browserVersion).setup();
 
-                // Set the Firefox options
+            case "edge":
+                WebDriverManager.edgedriver().browserVersion(browserVersion).setup();
+                // Set the Edge options
                 EdgeOptions edgeOptions = new EdgeOptions();
                 edgeOptions.setCapability(CapabilityType.BROWSER_NAME, "MicrosoftEdge");
                 edgeOptions.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
 
                 driver = new EdgeDriver(edgeOptions);
                 break;
-            case "safari":
-                // Set the driver version
-                WebDriverManager.safaridriver().browserVersion(browserVersion).setup();
 
+            case "safari":
                 // Set the Safari options
                 SafariOptions safariOptions = new SafariOptions();
                 safariOptions.setCapability(CapabilityType.BROWSER_NAME, "safari");
@@ -134,12 +128,13 @@ public class DriverFactory {
 
                 driver = new SafariDriver(safariOptions);
                 break;
+
             case "ie":
                 // Set the IE options
                 InternetExplorerOptions internetExplorerOptions = new InternetExplorerOptions();
                 internetExplorerOptions.setCapability(CapabilityType.BROWSER_NAME, "internet explorer");
                 internetExplorerOptions.setCapability(InternetExplorerDriver.INTRODUCE_FLAKINESS_BY_IGNORING_SECURITY_DOMAINS, true);
-                internetExplorerOptions.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
+                internetExplorerOptions.setCapability(InternetExplorerDriver.IGNORE_ZOOM_SETTING, true);
 
                 driver = new InternetExplorerDriver(internetExplorerOptions);
                 break;
@@ -147,6 +142,7 @@ public class DriverFactory {
             default:
                 throw new NotImplementedException("This browser type is not supported: " + driverDto.getBrowserType());
         }
+
         return driver;
     }
 }

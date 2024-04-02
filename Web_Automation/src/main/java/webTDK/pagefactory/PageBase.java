@@ -1,6 +1,7 @@
 package webTDK.pagefactory;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
@@ -12,6 +13,9 @@ import webTDK.common.helpers.wait.WaitConditions;
 import webTDK.common.helpers.wait.WaitHelpers;
 import webTDK.connection.ConnectionInfo;
 import webTDK.constants.Timeouts;
+
+import java.time.Duration;
+import java.util.function.Function;
 
 public class PageBase {
 
@@ -102,5 +106,20 @@ public class PageBase {
      */
     public void waitUntilWebElementIsClickable(By by, long attemptLimit){
         waitUntilWebElementIsClickable(by, attemptLimit);
+    }
+
+    /**
+     * Wait for Page Loaded Completely
+     * @param webDriver : WebDriver
+     */
+    public void waitForPageLoad(WebDriver webDriver){
+        WebDriverWait wait =new WebDriverWait(webDriver, Duration.ofMillis(Timeouts.IMPLICIT_WAIT));
+        Function<WebDriver, Boolean> pageLoaded = new Function<WebDriver, Boolean>() {
+            @Override
+            public Boolean apply(WebDriver input) {
+                return ((JavascriptExecutor) input).executeScript("return document.readyState").equals("complete");
+            }
+        };
+        wait.until(pageLoaded);
     }
 }
