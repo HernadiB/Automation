@@ -35,7 +35,12 @@ public class AutomationBase {
                 .setBrowserVersion(runtimeProps.getProperty("browserVersion").toLowerCase())
                 .setImplicitWait(30)
                 .setIsRemote(Boolean.parseBoolean(runtimeProps.getProperty("isRemote")))
-                .setE23Token(runtimeProps.getProperty("e34Token"));
+                .setRemoteProject(runtimeProps.getProperty("remoteProject"))
+                .setRemoteBuild(runtimeProps.getProperty("remoteBuild"))
+                .setRemoteAccessKey(runtimeProps.getProperty("remoteAccessKey"))
+                .setRemoteUsername(runtimeProps.getProperty("remoteUsername"))
+                .setBrowserLang(runtimeProps.getProperty("browserLang"))
+                .setRemoteVideo(Boolean.parseBoolean(runtimeProps.getProperty("remoteVideo")));
 
         ConnectionInfo connectionInfo;
         connectionInfo = ConnectionFactory.createConnection(driverDto);

@@ -75,10 +75,11 @@ public class PresenceHelpers {
      */
     public static void scrollToElement(WebDriver driver, WebElement element, int topThreshold, int bottomThreshold){
         JavascriptExecutor js = (JavascriptExecutor)driver;
-        js.executeScript("arguments[0].getBoundingClientRect() && ( " +
-                "(arguments[0].getBoundingClientRect().top < " + topThreshold + " || arguments[0].getBoundingClientRect().top > window.innerHeight - " + bottomThreshold + ") &&" +
-                "arguments[0].scrollIntoView() || " +
-                "window.scrollBy({top: (arguments[0].getBoundingClientRect().top < " + topThreshold + " ? " + -topThreshold + " : arguments[0].getBoundingClientRect().top > window.innerHeight - " + bottomThreshold + " ? " + bottomThreshold + " : 0), behavior: \"instant\"}) +" +
-                ")", element);
+        js.executeScript(
+                "arguments[0].getBoundingClientRect() && ( " +
+                        "(arguments[0].getBoundingClientRect().top < " + topThreshold + " || arguments[0].getBoundingClientRect().top > window.innerHeight - " + bottomThreshold + ") && " +
+                        "arguments[0].scrollIntoView() || " +
+                        "window.scrollBy({top: (arguments[0].getBoundingClientRect().top < " + topThreshold + " ? " + -topThreshold + " : arguments[0].getBoundingClientRect().top > window.innerHeight - " + bottomThreshold + " ? " + bottomThreshold + " : 0), behavior: \"instant\"})" +
+                        ")", element);
     }
 }
