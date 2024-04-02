@@ -34,10 +34,8 @@ public class GrandCasinoTest {
 
         // Játékok menü megnyitása
         ui.grandCasinoLoginPage.clickToGamesNavItem();
-;
-        // Játékgyártó lenyíló lista kattintása
-        //ui.grandCasinoLoginPage.clickToGameManufacturerDropdown();
 
+        // Játékgyártó statisztika
         ui.grandCasinoLoginPage.clickToGameManufacturer();
     }
 
