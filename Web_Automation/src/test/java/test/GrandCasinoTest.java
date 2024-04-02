@@ -26,6 +26,8 @@ public class GrandCasinoTest {
     @Test(groups = {"automation", "job"})
     public void grandCasinoTest(){
 
+        System.out.println("------------ Grand Casino ---------------");
+
         // Grand Casino oldal megnyitása
         ui.grandCasinoLoginPage.openGrandCasinoLoginPage();
 

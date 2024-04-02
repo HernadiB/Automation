@@ -111,7 +111,10 @@ public class GrandCasinoLoginPage extends PageBase {
         List<WebElement> listOfGames = driver.findElements(By.xpath("//div[contains(@class, \"m-game-grid-item column\")]"));
         if (!listOfGames.isEmpty()) {
             WebElement lastElement = listOfGames.get(listOfGames.size() - 1);
-            PresenceHelpers.scrollToElement(driver, lastElement, 1000, 1000);
+            Actions actions = new Actions(driver);
+            actions.moveToElement(lastElement);
+            actions.perform();
+            clickToAllGamesButton();
         } else {
             System.out.println("No elements found");
         }
