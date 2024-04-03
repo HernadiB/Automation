@@ -2,19 +2,16 @@ package automationPages.grandCasinoPages;
 
 import automationBase.AutomationThreadLocalFactory;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import webTDK.common.helpers.PresenceHelpers;
 import webTDK.common.helpers.wait.WaitHelpers;
 import webTDK.pagefactory.PageBase;
 
 import java.util.List;
 
-public class GrandCasinoLoginPage extends PageBase {
-    public GrandCasinoLoginPage(){
+public class GrandCasinoLandingPage extends PageBase {
+    public GrandCasinoLandingPage(){
         super(AutomationThreadLocalFactory.getConnectionInfo());
         initPage(this);
     }
@@ -155,7 +152,7 @@ public class GrandCasinoLoginPage extends PageBase {
 
     //region other functions
 
-    public void openGrandCasinoLoginPage(){
+    public void openGrandCasinoLandingPage(){
         this.driver.get("https://grandcasino.hu/hu-hu/");
     }
 

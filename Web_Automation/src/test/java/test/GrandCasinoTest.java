@@ -26,19 +26,19 @@ public class GrandCasinoTest {
     @Test(groups = {"automation", "job"})
     public void grandCasinoTest(){
 
-        System.out.println("------------ Grand Casino ---------------");
+        System.out.println("--------------- Grand Casino ---------------");
 
         // Grand Casino oldal megnyitása
-        ui.grandCasinoLoginPage.openGrandCasinoLoginPage();
+        ui.grandCasinoLandingPage.openGrandCasinoLandingPage();
 
         // Cookie elfogadása
-        ui.grandCasinoLoginPage.clickToCookieAcceptButton();
+        ui.grandCasinoLandingPage.clickToCookieAcceptButton();
 
         // Játékok menü megnyitása
-        ui.grandCasinoLoginPage.clickToGamesNavItem();
+        ui.grandCasinoLandingPage.clickToGamesNavItem();
 
         // Játékgyártó statisztika
-        ui.grandCasinoLoginPage.clickToGameManufacturer();
+        ui.grandCasinoLandingPage.clickToGameManufacturer();
     }
 
     @AfterMethod(alwaysRun = true)
