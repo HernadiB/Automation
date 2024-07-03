@@ -36,14 +36,6 @@ public class VeraJohnTest {
         // Vera&John oldal megnyitása
         ui.veraJohnLandingPage.openVeraJohnLandingPage();
 
-        /*WebElement selectElement = driver.findElement(By.xpath("//select[contains(@class, \"provider-dropdown\")]"));
-        Select select = new Select(selectElement);
-        List<WebElement> list = select.getOptions();
-        for (int i = 2; i < list.size(); i++){
-            WebElement option = list.get(i);
-            System.out.println(option.getText());
-        }*/
-
         ui.veraJohnLandingPage.clickToGameManufacturer();
     }
 
