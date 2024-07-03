@@ -1,11 +1,11 @@
 package automationBase;
 
 
-import automationPages.grandCasinoPages.GrandCasinoLandingPage;
-import automationPages.pafPages.PafLandingPage;
-import automationPages.vegasCasinoPages.VegasCasinoLandingPage;
-import automationPages.vegasCasinoVipPages.VegasCasinoVipLandingPage;
-import automationPages.veraJohnPages.VeraJohnLandingPage;
+import casinoPages.hungarian_casino.grandCasinoPages.GrandCasinoLandingPage;
+import casinoPages.sweden_casino.pafPages.PafLandingPage;
+import casinoPages.hungarian_casino.vegasCasinoPages.VegasCasinoLandingPage;
+import casinoPages.hungarian_casino.vegasCasinoVipPages.VegasCasinoVipLandingPage;
+import casinoPages.sweden_casino.veraJohnPages.VeraJohnLandingPage;
 
 /** Helpers to create page object when the test start, and don't need to create in every tests **/
 public class AutomationUI {

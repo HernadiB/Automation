@@ -1,4 +1,4 @@
-package automationPages.pafPages;
+package casinoPages.sweden_casino.pafPages;
 
 import automationBase.AutomationThreadLocalFactory;
 import org.openqa.selenium.By;

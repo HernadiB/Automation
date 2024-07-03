@@ -1,4 +1,4 @@
-package automationPages.vegasCasinoVipPages;
+package casinoPages.hungarian_casino.vegasCasinoVipPages;
 
 import automationBase.AutomationThreadLocalFactory;
 import org.openqa.selenium.WebElement;

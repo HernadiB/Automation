@@ -1,4 +1,4 @@
-package test;
+package test.hungarian_casino;
 
 import automationBase.AutomationBase;
 import automationBase.AutomationThreadLocalFactory;

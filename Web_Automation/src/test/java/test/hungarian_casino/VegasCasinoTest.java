@@ -1,16 +1,24 @@
-package test;
+package test.hungarian_casino;
 
-import automationBase.AutomationUI;
 import automationBase.AutomationBase;
 import automationBase.AutomationThreadLocalFactory;
+import automationBase.AutomationUI;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import webTDK.common.ThreadLocalBaseFactory;
+import webTDK.common.helpers.wait.WaitHelpers;
 
-public class GrandCasinoTest {
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+public class VegasCasinoTest {
     private AutomationUI ui;
     private WebDriver driver;
     private WebDriverWait wait;
@@ -24,21 +32,14 @@ public class GrandCasinoTest {
     }
 
     @Test(groups = {"automation", "job"})
-    public void grandCasinoTest(){
+    public void vegasCasinoTest(){
 
-        System.out.println("--------------- Grand Casino ---------------");
+        System.out.println("--------------- Vegas Casino ---------------");
 
-        // Grand Casino oldal megnyitása
-        ui.grandCasinoLandingPage.openGrandCasinoLandingPage();
-
-        // Cookie elfogadása
-        ui.grandCasinoLandingPage.clickToCookieAcceptButton();
-
-        // Játékok menü megnyitása
-        ui.grandCasinoLandingPage.clickToGamesNavItem();
-
-        // Játékgyártó statisztika
-        ui.grandCasinoLandingPage.clickToGameManufacturer();
+        ui.vegasCasinoPage.openVegasCasinoPage();
+        ui.vegasCasinoPage.clickToAcceptCookieButton();
+        ui.vegasCasinoPage.navigateToProviders();
+        ui.vegasCasinoPage.getGameProviderAndNumber();
     }
 
     @AfterMethod(alwaysRun = true)

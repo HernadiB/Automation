@@ -1,4 +1,4 @@
-package automationPages.grandCasinoPages;
+package casinoPages.hungarian_casino.grandCasinoPages;
 
 import automationBase.AutomationThreadLocalFactory;
 import org.openqa.selenium.By;

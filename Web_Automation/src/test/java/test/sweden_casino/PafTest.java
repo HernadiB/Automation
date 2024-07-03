@@ -1,4 +1,4 @@
-package test;
+package test.sweden_casino;
 
 import automationBase.AutomationBase;
 import automationBase.AutomationThreadLocalFactory;
