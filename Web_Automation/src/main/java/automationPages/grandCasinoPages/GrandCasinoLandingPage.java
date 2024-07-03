@@ -10,6 +10,8 @@ import webTDK.pagefactory.PageBase;
 
 import java.util.List;
 
+import static webTDK.constants.EnvironmentUrls.GRANDCASINO_URL;
+
 public class GrandCasinoLandingPage extends PageBase {
     public GrandCasinoLandingPage(){
         super(AutomationThreadLocalFactory.getConnectionInfo());
@@ -153,7 +155,7 @@ public class GrandCasinoLandingPage extends PageBase {
     //region other functions
 
     public void openGrandCasinoLandingPage(){
-        this.driver.get("https://grandcasino.hu/hu-hu/");
+        this.driver.get(GRANDCASINO_URL);
     }
 
     //endregion
