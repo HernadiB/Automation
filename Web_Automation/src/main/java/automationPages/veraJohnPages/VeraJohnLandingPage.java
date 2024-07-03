@@ -13,6 +13,8 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static webTDK.constants.EnvironmentUrls.VERAJOHN_URL;
+
 public class VeraJohnLandingPage extends PageBase {
     public VeraJohnLandingPage(){
         super(AutomationThreadLocalFactory.getConnectionInfo());
@@ -62,7 +64,7 @@ public class VeraJohnLandingPage extends PageBase {
     //region other functions
 
     public void openVeraJohnLandingPage(){
-        this.driver.get("https://www.verajohn.se/en");
+        this.driver.get(VERAJOHN_URL);
     }
 
     //endregion

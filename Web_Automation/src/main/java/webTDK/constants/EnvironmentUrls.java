@@ -16,7 +16,7 @@ public class EnvironmentUrls {
 
     //region Svéd kaszinók
 
-    /** Vera&John **/ //!!!!!!!
+    /** Vera&John **/
     public static final String VERAJOHN_URL = "https://www.verajohn.se/en";
 
     /** Expekt **/ //VPN !!!!!!!!
@@ -25,7 +25,7 @@ public class EnvironmentUrls {
     /** Hajper **/ //VPN !!!!!!!!
     public static final String HAJPER_URL = "https://hajper.se/";
 
-    /** Paf **/ //!!!!!!!
+    /** Paf **/
     public static final String PAF_URL = "https://www.paf.se/en";
 
     /** AB Trav and Galopp **/
