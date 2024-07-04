@@ -2,6 +2,7 @@ package automationBase;
 
 
 import casinoPages.hungarian_casino.grandCasinoPages.GrandCasinoLandingPage;
+import casinoPages.sweden_casino.expektPages.ExpektLandingPage;
 import casinoPages.sweden_casino.pafPages.PafLandingPage;
 import casinoPages.hungarian_casino.vegasCasinoPages.VegasCasinoLandingPage;
 import casinoPages.hungarian_casino.vegasCasinoVipPages.VegasCasinoVipLandingPage;
@@ -14,6 +15,7 @@ public class AutomationUI {
     public PafLandingPage pafLandingPage;
     public VegasCasinoLandingPage vegasCasinoPage;
     public VegasCasinoVipLandingPage vegasCasinoVipLandingPage;
+    public ExpektLandingPage expektLandingPage;
 
     public AutomationUI(){
         this.grandCasinoLandingPage = new GrandCasinoLandingPage();
@@ -21,5 +23,6 @@ public class AutomationUI {
         this.pafLandingPage = new PafLandingPage();
         this.vegasCasinoPage = new VegasCasinoLandingPage();
         this.vegasCasinoVipLandingPage = new VegasCasinoVipLandingPage();
+        this.expektLandingPage = new ExpektLandingPage();
     }
 }
