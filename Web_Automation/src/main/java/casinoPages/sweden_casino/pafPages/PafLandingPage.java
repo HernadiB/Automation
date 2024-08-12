@@ -10,6 +10,8 @@ import webTDK.pagefactory.PageBase;
 
 import java.util.List;
 
+import static webTDK.constants.EnvironmentUrls.PAF_URL;
+
 public class PafLandingPage extends PageBase {
     public PafLandingPage(){
         super(AutomationThreadLocalFactory.getConnectionInfo());
@@ -34,9 +36,9 @@ public class PafLandingPage extends PageBase {
     @FindBy(xpath = "//button[@type = \"button\" and contains(text(), \"Supplier\")]")
     public WebElement gameManufacturerDropdown;
 
-    /** Összes Játék gomb **/
-    @FindBy(xpath = "//button[@type = \"button\" and contains(text(), \"Show More\")]")
-    public WebElement allGamesButton;
+    /** Játékgyártó legördülő lista elemei **/
+    @FindBy(xpath = "//button[@type = \"button\" and contains(text(), \"Supplier\")]/parent::div/div/div/div/div/div/a")
+    public List<WebElement> gameManufacturerDropdownListElements;
 
     //endregion
 
@@ -161,7 +163,7 @@ public class PafLandingPage extends PageBase {
     //region other functions
 
     public void openPafLandingPage(){
-        this.driver.get("https://www.paf.se/en");
+        this.driver.get(PAF_URL);
     }
 
     //endregion

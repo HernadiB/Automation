@@ -8,6 +8,7 @@ import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -16,6 +17,7 @@ import webTDK.common.ThreadLocalBaseFactory;
 import webTDK.common.helpers.wait.WaitConditions;
 import webTDK.common.helpers.wait.WaitHelpers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class PafTest {
@@ -42,51 +44,37 @@ public class PafTest {
         ui.pafLandingPage.clickToAcceptCookieButton();
         ui.pafLandingPage.clickToCasinoSlotsButton();
         ui.pafLandingPage.clickToAllSlotsButton();
-        //ui.pafLandingPage.clickToGameManufacturerDropdown();
 
-        //ui.pafLandingPage.clickToGameManufacturer();
-
-        //WaitHelpers.delay(5);
         ui.pafLandingPage.clickToGameManufacturerDropdown();
-        List<WebElement> listOfManufacturers = driver.findElements(By.xpath("//div[@class = \"enp7ohk0 css-1jrdolm e178mt9h0\"]/a"));
-        System.out.println(listOfManufacturers.size());
-        if (!listOfManufacturers.isEmpty()) {
-            /*for (WebElement element : listOfManufacturers) {
-                try {
-                    element.click();
-                    //WaitConditions.steadinessOf(element);
-                    WaitHelpers.delay(3);
-                    ui.pafLandingPage.scrollToLastElement();
-                    WaitHelpers.delay(3);
-                    ui.pafLandingPage.scrollToGameManufacturerDropdown();
-                } catch (StaleElementReferenceException e) {
-                    System.out.println("StaleElementReferenceException occurred. Refreshing elements..." + "\nException: " + e);
-                    // You can retry the operation or refresh the elements here
-                    continue;
-                }
-            }*/
 
-            for (WebElement element : listOfManufacturers) {
-                element.click();
-                List<WebElement> listOfElements = driver.findElements(By.xpath("//li[@class = \"css-qdmxni e1kpsuhn1\"]"));
-                if (!listOfElements.isEmpty()) {
-                    WebElement lastElement = listOfElements.get(listOfElements.size() - 1);
-                    //ui.pafLandingPage.scrollToElement(lastElement);
-                    Actions actions = new Actions(driver);
-                    actions.moveToElement(lastElement);
-                    actions.perform();
-                } else {
-                    System.out.println("No elements found.");
-                }
-                WebElement showMoreButton = driver.findElement(By.xpath("//button[@type = \"button\" and contains(text(), \"Show More\")]"));
-                while (showMoreButton.isDisplayed()) {
-                    showMoreButton.click();
-                    ui.pafLandingPage.scrollToLastElement();
-                    showMoreButton = driver.findElement(By.xpath("//button[@type = \"button\" and contains(text(), \"Show More\")]"));
-                }
+        List<String> suppliers = new ArrayList<>();
+
+        // Save the suppliers into a list
+        for (WebElement supplierElement : ui.pafLandingPage.gameManufacturerDropdownListElements) {
+            suppliers.add(supplierElement.getText());
+        }
+
+        // Iterate through the list of suppliers
+        for (String supplier : suppliers) {
+            // Find and click on each supplier
+            WebElement supplierLink = driver.findElement(By.linkText(supplier));
+            supplierLink.click();
+
+            // Wait for the page to refresh
+            WaitHelpers.delay(1); // Use a better wait strategy in a real scenario
+
+            // Get the list of game providers and number of games per provider
+            List<WebElement> gameProviderElements = driver.findElements(By.cssSelector("a.css-1j2idm3.e1081hx62"));
+            List<String> gameProviders = new ArrayList<>();
+
+            for (WebElement gameProviderElement : gameProviderElements) {
+                gameProviders.add(gameProviderElement.getText());
             }
-        } else {
-            System.out.println("No elements found");
+
+            // Output the game providers and number of games
+            System.out.println("Supplier: " + supplier);
+            System.out.println("Number of Games: " + gameProviders.size());
+            //System.out.println("Games: " + gameProviders);
         }
     }
 
