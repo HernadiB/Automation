@@ -2,6 +2,7 @@ package automationBase;
 
 
 import casinoPages.hungarian_casino.grandCasinoPages.GrandCasinoLandingPage;
+import casinoPages.slovak_casino.nikePages.NikeLandingPage;
 import casinoPages.sweden_casino.expektPages.ExpektLandingPage;
 import casinoPages.sweden_casino.hajperPages.HajperLandingPage;
 import casinoPages.sweden_casino.pafPages.PafLandingPage;
@@ -20,6 +21,7 @@ public class AutomationUI {
     public ExpektLandingPage expektLandingPage;
     public HajperLandingPage hajperLandingPage;
     public TravAndGaloppLandingPage travAndGaloppLandingPage;
+    public NikeLandingPage nikeLandingPage;
 
     public AutomationUI(){
         this.grandCasinoLandingPage = new GrandCasinoLandingPage();
@@ -30,5 +32,6 @@ public class AutomationUI {
         this.expektLandingPage = new ExpektLandingPage();
         this.hajperLandingPage = new HajperLandingPage();
         this.travAndGaloppLandingPage = new TravAndGaloppLandingPage();
+        this.nikeLandingPage = new NikeLandingPage();
     }
 }
