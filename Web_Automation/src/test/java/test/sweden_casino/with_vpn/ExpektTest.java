@@ -1,4 +1,4 @@
-package test.sweden_casino;
+package test.sweden_casino.with_vpn;
 
 import automationBase.AutomationBase;
 import automationBase.AutomationThreadLocalFactory;

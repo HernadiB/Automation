@@ -3,7 +3,7 @@ package webTDK.constants;
 public class EnvironmentUrls {
 
     //region Magyar kaszinók
-    /** Grand Casino **/ //!!!!!!!
+    /** Grand Casino **/
     public static final String GRANDCASINO_URL = "https://grandcasino.hu/hu-hu/";
 
     /** Vegas Casino **/
@@ -22,10 +22,10 @@ public class EnvironmentUrls {
     /** Expekt **/ //VPN !!!!!!!!
     public static final String EXPEKT_URL = "https://www.expekt.se/";
 
-    /** Hajper **/ //VPN !!!!!!!!
+    /** Hajper **/ //VPN not finished
     public static final String HAJPER_URL = "https://hajper.se/";
 
-    /** Paf **/
+    /** Paf **/ //not finished
     public static final String PAF_URL = "https://www.paf.se/en";
 
     /** AB Trav and Galopp **/
