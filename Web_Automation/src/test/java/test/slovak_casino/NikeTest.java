@@ -37,7 +37,7 @@ public class NikeTest {
 
     @AfterMethod(alwaysRun = true)
     public void after(){
-        //driver.quit();
+        driver.quit();
         ThreadLocalBaseFactory.removeThreadLocalVariables();
     }
 }
