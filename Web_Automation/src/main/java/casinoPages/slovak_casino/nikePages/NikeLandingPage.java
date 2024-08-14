@@ -10,6 +10,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static webTDK.constants.EnvironmentUrls.NIKE_URL;
+
 public class NikeLandingPage extends PageBase {
     public NikeLandingPage(){
         super(AutomationThreadLocalFactory.getConnectionInfo());
@@ -63,7 +65,7 @@ public class NikeLandingPage extends PageBase {
     //region other functions
 
     public void openNikeLandingPage(){
-        this.driver.get("https://www.nike.sk/casino/hry");
+        this.driver.get(NIKE_URL);
     }
 
     //endregion
