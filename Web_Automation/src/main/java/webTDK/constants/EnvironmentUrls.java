@@ -35,7 +35,6 @@ public class EnvironmentUrls {
     /** AB Trav and Galopp **/
     public static final String TRAVANDGALOPP_URL = "https://www.atg.se/";
 
-    //TODO
     /** 888 Sweden Limited **/
     public static final String SWEDENLIMITED_URL = "https://www.888casino.se/";
 
