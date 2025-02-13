@@ -17,6 +17,7 @@ import org.openqa.selenium.safari.SafariOptions;
 
 import java.io.File;
 import java.net.MalformedURLException;
+import java.net.Proxy;
 import java.net.URL;
 import java.util.HashMap;
 
@@ -24,7 +25,6 @@ import java.util.HashMap;
  * Create driver functions
  */
 public class DriverFactory {
-
     /**
      * Create a HashMap and parse all remote settings and then return the setting HashMap.
      * @param driverDto DriverDto object
@@ -90,6 +90,7 @@ public class DriverFactory {
                 }
 
                 // Set the Chrome options
+                //chromeOptions.setCapability(CapabilityType.PROXY, Proxy.NO_PROXY);
                 chromeOptions.setCapability(CapabilityType.BROWSER_NAME, "chrome");
                 chromeOptions.setCapability(CapabilityType.ACCEPT_INSECURE_CERTS, true);
                 chromeOptions.addArguments("--remote-allow-origins=*");
