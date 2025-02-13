@@ -6,33 +6,12 @@ on:
       - master
 
 jobs:
-  checkout:
+  create-pull-request:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-
-  upload-repository:
-    runs-on: ubuntu-latest
-    needs: checkout
-
-    steps:
-      - name: Upload repository
-        uses: actions/upload-artifact@v4
-        with:
-          name: repo
-          path: .
-
-  create-pull-request:
-    runs-on: ubuntu-latest
-    needs: upload-repository
-
-    steps:
-      - name: Download repository
-        uses: actions/download-artifact@v4
-        with:
-          name: repo
 
       - name: Create pull request from master to dev
         uses: peter-evans/create-pull-request@v4
@@ -41,6 +20,11 @@ jobs:
           commit-message: 'Synchronize master to dev'
           branch: sync-master-to-dev
           base: dev
-          title: 'Synchronize master to dev'
-          body: 'This is an automated pull request to merge changes from master to dev.'
+          title: 'Update dev branch with latest changes from master'
+          body: |
+            This pull request merges the latest changes from the master branch into the dev branch.
+            
+            **Changes:**
+            - List of changes or features
+            - Another change or feature
           delete-branch: true
