@@ -24,7 +24,7 @@ public class SwedenLimitedTest {
     }
 
     @Test(groups = {"automation", "job"})
-    public void pafTest(){
+    public void swedenLimitedTest(){
 
         System.out.println("--------------- 888 Sweden Limited Casino ---------------");
 
