@@ -30,7 +30,7 @@ public class AtgTest {
     }
 
     @Test(groups = {"automation", "job"})
-    public void pafTest(){
+    public void atgTest(){
 
         System.out.println("--------------- AB Trav and Galopp ---------------");
 
