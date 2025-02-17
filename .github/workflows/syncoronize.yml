@@ -20,7 +20,6 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: 'Synchronize master to dev'
           committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
-          author: ${{ github.actor }} <${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com>
           branch: master
           base: dev
           title: 'Update dev branch with latest changes from master as Synchronize master to dev'

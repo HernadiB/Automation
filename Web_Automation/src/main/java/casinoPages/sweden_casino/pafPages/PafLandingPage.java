@@ -33,11 +33,11 @@ public class PafLandingPage extends PageBase {
     public WebElement acceptCookieButton;
 
     /** Játékgyártó legördülő lista **/
-    @FindBy(xpath = "//button[@type = \"button\" and contains(text(), \"Supplier\")]")
+    @FindBy(xpath = "//button[contains(text(), \"Supplier\")]")
     public WebElement gameManufacturerDropdown;
 
     /** Játékgyártó legördülő lista elemei **/
-    @FindBy(xpath = "//button[@type = \"button\" and contains(text(), \"Supplier\")]/parent::div/div/div/div/div/div/a")
+    @FindBy(xpath = ".//figure")
     public List<WebElement> gameManufacturerDropdownListElements;
 
     //endregion

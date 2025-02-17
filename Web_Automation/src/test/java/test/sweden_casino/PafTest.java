@@ -3,10 +3,8 @@ package test.sweden_casino;
 import automationBase.AutomationBase;
 import automationBase.AutomationThreadLocalFactory;
 import automationBase.AutomationUI;
-import org.openqa.selenium.By;
-import org.openqa.selenium.StaleElementReferenceException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import io.opentelemetry.exporter.logging.SystemOutLogRecordExporter;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -49,32 +47,35 @@ public class PafTest {
 
         List<String> suppliers = new ArrayList<>();
 
-        // Save the suppliers into a list
-        for (WebElement supplierElement : ui.pafLandingPage.gameManufacturerDropdownListElements) {
-            suppliers.add(supplierElement.getText());
+        // Use JavascriptExecutor to scroll to the dropdown element
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        //js.executeScript("arguments[0].scrollIntoView(true);", ui.pafLandingPage.gameManufacturerDropdown);
+
+        // Click the dropdown to reveal the options
+        //ui.pafLandingPage.clickToGameManufacturerDropdown();
+
+        // Get all the options dynamically from the dropdown
+        List<WebElement> dropdownOptions = driver.findElements(By.xpath(".//ul[@class = \"css-1tfqmwd e18v8o6f0\"]/li"));
+
+        for (WebElement dr : dropdownOptions) {
+            System.out.println(dr.getText());
         }
 
-        // Iterate through the list of suppliers
-        for (String supplier : suppliers) {
-            // Find and click on each supplier
-            WebElement supplierLink = driver.findElement(By.linkText(supplier));
-            supplierLink.click();
+        // Loop through each dropdown option
+        for (int i = 0; i < dropdownOptions.size(); i++) {
+            // Reload the options dynamically after every page reload
+            WebElement dropdown = driver.findElement(By.xpath("//button[contains(text(), \"Supplier\")]"));
+            dropdown.click();
+            dropdownOptions = driver.findElements(By.xpath(".//ul[@class = \"css-1tfqmwd e18v8o6f0\"]/li"));
 
-            // Wait for the page to refresh
-            WaitHelpers.delay(1); // Use a better wait strategy in a real scenario
+            // Scroll to the option before clicking
+            //js.executeScript("arguments[0].scrollIntoView(true);", dropdownOptions.get(i));
 
-            // Get the list of game providers and number of games per provider
-            List<WebElement> gameProviderElements = driver.findElements(By.cssSelector("a.css-1j2idm3.e1081hx62"));
-            List<String> gameProviders = new ArrayList<>();
+            // Click the dropdown option
+            dropdownOptions.get(i).click();
 
-            for (WebElement gameProviderElement : gameProviderElements) {
-                gameProviders.add(gameProviderElement.getText());
-            }
-
-            // Output the game providers and number of games
-            System.out.println("Supplier: " + supplier);
-            System.out.println("Number of Games: " + gameProviders.size());
-            //System.out.println("Games: " + gameProviders);
+            List<WebElement> figures = driver.findElements(By.xpath(".//figure"));
+            System.out.println("Number of <figure> elements after clicking option " + (i + 1) + ": " + figures.size());
         }
     }
 
