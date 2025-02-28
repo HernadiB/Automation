@@ -96,6 +96,9 @@ public class DriverFactory {
                 chromeOptions.addArguments("--remote-allow-origins=*");
                 chromeOptions.addArguments("--lang=" + browserLang);
                 chromeOptions.addArguments(resolution);
+                //chromeOptions.addArguments("--disable-extension");
+                //chromeOptions.addArguments("--headless");
+                //chromeOptions.addArguments("--disable-gpu");
 
                 try {
                     driver = driverDto.getIsRemote() ? new RemoteWebDriver(new URL("https://" + driverDto.getRemoteUsername() + ":" + driverDto.getRemoteAccessKey() + "@hub.lambdatest.com/wd/hub"), chromeOptions) : new ChromeDriver(chromeOptions);

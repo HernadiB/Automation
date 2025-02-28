@@ -39,11 +39,11 @@ public class EnvironmentUrls {
     public static final String SWEDENLIMITED_URL = "https://www.888casino.se/";
 
     //TODO
-    /** Auto Nordic Plc **/ //VPN
+    /** Auto Nordic Plc **/ //VPN not finished
     public static final String AUTONORDIC_URL = "https://jallacasino.se/";
 
     //TODO
-    /** Betfair International Ltd **/
+    /** Betfair International Ltd **/ //VPN not finished
     public static final String BETFAIRINTERNATIONAL_URL = "https://www.betfair.se/hu";
 
     /** Blue Star Planet Limited **/
@@ -94,7 +94,7 @@ public class EnvironmentUrls {
     public static final String SYNOTTIP_URL = "https://synottip.sk/";
 
     //TODO
-    /** OlyBet **/ //!!!!!!!
+    /** OlyBet **/ //!!!!!!! VPN //not finished //cloudflare captcha
     public static final String OLYBET_URL = "https://olybet.sk/";
 
 

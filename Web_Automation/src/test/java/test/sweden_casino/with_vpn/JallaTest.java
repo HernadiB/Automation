@@ -20,7 +20,7 @@ import java.util.Map;
 
 public class JallaTest extends TestBase {
     @Test(groups = {"automation", "job"})
-    public void hajperTest(){
+    public void jallaTest(){
 
         System.out.println("--------------- Jalla! CASINO ---------------");
 

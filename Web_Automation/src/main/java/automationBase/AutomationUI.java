@@ -3,8 +3,10 @@ package automationBase;
 
 import casinoPages.hungarian_casino.grandCasinoPages.GrandCasinoLandingPage;
 import casinoPages.slovak_casino.nikePages.NikeLandingPage;
+import casinoPages.slovak_casino.olyBetPages.OlyBetLandingPage;
 import casinoPages.sweden_casino.atgPages.AtgLandingPage;
 import casinoPages.sweden_casino.bet10.Bet10;
+import casinoPages.sweden_casino.betfairPages.BetfairLandingPage;
 import casinoPages.sweden_casino.expektPages.ExpektLandingPage;
 import casinoPages.sweden_casino.hajperPages.HajperLandingPage;
 import casinoPages.sweden_casino.jallaPages.JallaLandingPage;
@@ -32,6 +34,8 @@ public class AutomationUI {
     public JallaLandingPage jallaLandingPage;
     public Bet10 bet10;
     public LyckostLandingPage lyckostLandingPage;
+    public BetfairLandingPage betfairLandingPage;
+    public OlyBetLandingPage olyBetLandingPage;
 
     public AutomationUI(){
         this.grandCasinoLandingPage = new GrandCasinoLandingPage();
@@ -48,5 +52,7 @@ public class AutomationUI {
         this.jallaLandingPage = new JallaLandingPage();
         this.bet10 = new Bet10();
         this.lyckostLandingPage = new LyckostLandingPage();
+        this.betfairLandingPage = new BetfairLandingPage();
+        this.olyBetLandingPage = new OlyBetLandingPage();
     }
 }
