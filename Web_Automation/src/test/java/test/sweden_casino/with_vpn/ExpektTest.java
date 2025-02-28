@@ -11,23 +11,14 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import test.TestBase;
 import webTDK.common.ThreadLocalBaseFactory;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ExpektTest {
-    private AutomationUI ui;
-    private WebDriver driver;
-
-    @BeforeMethod(alwaysRun = true)
-    public void before(){
-        AutomationBase.initProps();
-        AutomationBase.setDriver();
-        this.ui = AutomationThreadLocalFactory.getUi();
-        this.driver = AutomationThreadLocalFactory.getConnectionInfo().getDriver();
-    }
+public class ExpektTest extends TestBase {
 
     @Test(groups = {"automation", "job"})
     public void expektTest(){
@@ -40,11 +31,5 @@ public class ExpektTest {
         ui.expektLandingPage.clickToSlotsFilterButton();
         ui.expektLandingPage.printGamesPerProdiver();
 
-    }
-
-    @AfterMethod(alwaysRun = true)
-    public void after(){
-        driver.quit();
-        ThreadLocalBaseFactory.removeThreadLocalVariables();
     }
 }

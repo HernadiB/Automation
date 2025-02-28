@@ -10,6 +10,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import test.TestBase;
 import webTDK.common.ThreadLocalBaseFactory;
 import webTDK.common.helpers.PresenceHelpers;
 import webTDK.common.helpers.wait.WaitConditions;
@@ -21,19 +22,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class HajperTest {
-    private AutomationUI ui;
-    private WebDriver driver;
-    private WebDriverWait wait;
-
-    @BeforeMethod(alwaysRun = true)
-    public void before(){
-        AutomationBase.initProps();
-        AutomationBase.setDriver();
-        this.ui = AutomationThreadLocalFactory.getUi();
-        this.driver = AutomationThreadLocalFactory.getConnectionInfo().getDriver();
-    }
-
+public class HajperTest extends TestBase {
     @Test(groups = {"automation", "job"})
     public void hajperTest(){
 
@@ -71,11 +60,5 @@ public class HajperTest {
         for (Map.Entry<String, String> entry : gameInfoMap.entrySet()) {
             System.out.println("Provider: " + entry.getKey() + ", Game Number: " + entry.getValue());
         }
-    }
-
-    @AfterMethod(alwaysRun = true)
-    public void after(){
-        //driver.quit();
-        ThreadLocalBaseFactory.removeThreadLocalVariables();
     }
 }

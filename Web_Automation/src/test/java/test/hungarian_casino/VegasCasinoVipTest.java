@@ -10,22 +10,13 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import test.TestBase;
 import webTDK.common.ThreadLocalBaseFactory;
 import webTDK.common.helpers.wait.WaitHelpers;
 
 import java.util.List;
 
-public class VegasCasinoVipTest {
-    private AutomationUI ui;
-    private WebDriver driver;
-
-    @BeforeMethod(alwaysRun = true)
-    public void before() {
-        AutomationBase.initProps();
-        AutomationBase.setDriver();
-        this.ui = AutomationThreadLocalFactory.getUi();
-        this.driver = AutomationThreadLocalFactory.getConnectionInfo().getDriver();
-    }
+public class VegasCasinoVipTest extends TestBase {
 
     @Test(groups = {"automation", "job"})
     public void vegasCasinoVipTest() {
@@ -48,11 +39,5 @@ public class VegasCasinoVipTest {
             System.out.println(provider.getText() + ": " + games.size());
             checkbox.click();
         }
-    }
-
-    @AfterMethod(alwaysRun = true)
-    public void after(){
-        driver.quit();
-        ThreadLocalBaseFactory.removeThreadLocalVariables();
     }
 }

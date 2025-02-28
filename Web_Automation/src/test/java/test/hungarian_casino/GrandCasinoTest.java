@@ -8,20 +8,10 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import test.TestBase;
 import webTDK.common.ThreadLocalBaseFactory;
 
-public class GrandCasinoTest {
-    private AutomationUI ui;
-    private WebDriver driver;
-    private WebDriverWait wait;
-
-    @BeforeMethod(alwaysRun = true)
-    public void before(){
-        AutomationBase.initProps();
-        AutomationBase.setDriver();
-        this.ui = AutomationThreadLocalFactory.getUi();
-        this.driver = AutomationThreadLocalFactory.getConnectionInfo().getDriver();
-    }
+public class GrandCasinoTest extends TestBase {
 
     @Test(groups = {"automation", "job"})
     public void grandCasinoTest(){
@@ -39,11 +29,5 @@ public class GrandCasinoTest {
 
         // Játékgyártó statisztika
         ui.grandCasinoLandingPage.clickToGameManufacturer();
-    }
-
-    @AfterMethod(alwaysRun = true)
-    public void after(){
-        driver.quit();
-        ThreadLocalBaseFactory.removeThreadLocalVariables();
     }
 }
