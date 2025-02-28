@@ -30,9 +30,6 @@ public class Bet10 extends PageBase {
     @FindBy(xpath = ".//label[@class=\"Label__label--1mu Checkbox__label--6Vk\"]")
     public List<WebElement> gameManufacturerDropdownElements;
 
-    @FindBy(xpath = ".//span[@class=\"GameProvider__gameProvider--1Yu  cms-games-grid-game-provider\"]")
-    public WebElement gameProvider;
-
     //endregion
 
     //region elements functions
@@ -60,6 +57,11 @@ public class Bet10 extends PageBase {
         actions.perform();
     }
 
+    public int countGamesRow() {
+        List<WebElement> gamesRowElements = driver.findElements(By.xpath(".//div[@class=\"GamesRow__gamesRow--2nK cms-games-grid-games-row\"]"));
+        return gamesRowElements.size();
+    }
+
     public void scrollToLastElement() {
         int previousNumberOfGames = 0;
         int currentNumberOfGames = 0;
@@ -80,12 +82,11 @@ public class Bet10 extends PageBase {
             }
 
             // Wait for 5 seconds before checking again
-            WaitHelpers.delay(5);
+            WaitHelpers.delay(2);
         } while (currentNumberOfGames > previousNumberOfGames);
     }
 
     public int numberOfGames(){
-        WaitHelpers.delay(5);
         List<WebElement> listOfGamesPreview = driver.findElements(By.xpath(".//span[@class=\"GameProvider__gameProvider--1Yu  cms-games-grid-game-provider\"]"));
         return listOfGamesPreview.size();
     }
@@ -96,9 +97,24 @@ public class Bet10 extends PageBase {
         for (WebElement manufacturer: gameManufacturerDropdownElements) {
             waitUntilWebElementIsClickable(manufacturer);
             manufacturer.click();
-            //scrollToImg();
             scrollToLastElement();
-            System.out.println(manufacturer.getText() + ": " + numberOfGames());
+            WaitHelpers.delay(2);
+
+            List<WebElement> gamesRows = driver.findElements(By.xpath(".//div[@class=\"GamesRow__gamesRow--2nK cms-games-grid-games-row\"]"));
+            int totalGames = 0;
+
+            if (!gamesRows.isEmpty()) {
+                WebElement lastRow = gamesRows.get(gamesRows.size() - 1);
+                List<WebElement> gameProvidersInLastRow = lastRow.findElements(By.xpath(".//span[@class=\"GameProvider__gameProvider--1Yu  cms-games-grid-game-provider\"]"));
+
+                if (gameProvidersInLastRow.size() == 7) {
+                    totalGames = gamesRows.size() * 7;
+                } else {
+                    totalGames = (gamesRows.size() - 1) * 7 + gameProvidersInLastRow.size();
+                }
+            }
+            System.out.println(manufacturer.getText() + " - Total games: " + totalGames);
+
             scrollToFilterButton();
             manufacturer.click();
         }
