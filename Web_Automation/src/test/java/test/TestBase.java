@@ -26,17 +26,17 @@ public class TestBase {
         ui = AutomationThreadLocalFactory.getUi();
         driver = AutomationThreadLocalFactory.getConnectionInfo().getDriver();
         wait = AutomationThreadLocalFactory.getConnectionInfo().getWait();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(2));
     }
 
     @AfterMethod(alwaysRun = true)
     public void after(){
         ConnectionInfo connectionInfo = AutomationThreadLocalFactory.getConnectionInfo();
         if (connectionInfo != null && connectionInfo.getDriver() != null) {
-            //connectionInfo.getDriver().quit();
+            connectionInfo.getDriver().quit();
         }
         if (driver != null) {
-            //driver.quit();
+            driver.quit();
         }
         AutomationThreadLocalFactory.removeThreadLocalVariables();
     }

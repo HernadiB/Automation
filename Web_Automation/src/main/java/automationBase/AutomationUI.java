@@ -8,6 +8,7 @@ import casinoPages.sweden_casino.bet10.Bet10;
 import casinoPages.sweden_casino.expektPages.ExpektLandingPage;
 import casinoPages.sweden_casino.hajperPages.HajperLandingPage;
 import casinoPages.sweden_casino.jallaPages.JallaLandingPage;
+import casinoPages.sweden_casino.lyckostPages.LyckostLandingPage;
 import casinoPages.sweden_casino.pafPages.PafLandingPage;
 import casinoPages.hungarian_casino.vegasCasinoPages.VegasCasinoLandingPage;
 import casinoPages.hungarian_casino.vegasCasinoVipPages.VegasCasinoVipLandingPage;
@@ -30,6 +31,7 @@ public class AutomationUI {
     public SwedenLimitedLandingPage swedenLimitedLandingPage;
     public JallaLandingPage jallaLandingPage;
     public Bet10 bet10;
+    public LyckostLandingPage lyckostLandingPage;
 
     public AutomationUI(){
         this.grandCasinoLandingPage = new GrandCasinoLandingPage();
@@ -45,5 +47,6 @@ public class AutomationUI {
         this.swedenLimitedLandingPage = new SwedenLimitedLandingPage();
         this.jallaLandingPage = new JallaLandingPage();
         this.bet10 = new Bet10();
+        this.lyckostLandingPage = new LyckostLandingPage();
     }
 }

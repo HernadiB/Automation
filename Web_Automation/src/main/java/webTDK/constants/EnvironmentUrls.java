@@ -17,11 +17,11 @@ public class EnvironmentUrls {
     //region Svéd kaszinók
 
     //TODO
-    /** Vera&John **/
+    /** Vera&John **/ // not finished
     public static final String VERAJOHN_URL = "https://www.verajohn.se/en";
 
     //TODO
-    /** Expekt **/ //VPN !!!!!!!!
+    /** Expekt **/ //VPN !!!!!!!! not finished
     public static final String EXPEKT_URL = "https://www.expekt.se/";
 
     //TODO
@@ -46,12 +46,11 @@ public class EnvironmentUrls {
     /** Betfair International Ltd **/
     public static final String BETFAIRINTERNATIONAL_URL = "https://www.betfair.se/hu";
 
-    //TODO
     /** Blue Star Planet Limited **/
     public static final String BLUESTARTLIMITED_URL = "https://www.10bet.se/";
 
     //TODO
-    /** Lyckost ApS **/
+    /** Lyckost ApS **/ //VPN not finished
     public static final String LYCKOST_URL = "https://www.lyckost.se/";
 
     //endregion
