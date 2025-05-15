@@ -29,7 +29,7 @@
         <maven.compiler.plugin.version>3.11.0</maven.compiler.plugin.version>
         <maven.surefire.plugin.version>3.1.2</maven.surefire.plugin.version>
         <selenium.java.version>4.14.1</selenium.java.version>
-        <webdrivermanager.version>5.5.3</webdrivermanager.version>
+        <webdrivermanager.version>6.1.0</webdrivermanager.version>
         <testng.version>7.8.0</testng.version>
         <surefire.testng.version>3.1.2</surefire.testng.version>
         <taf.web.version>1.1.0</taf.web.version>
